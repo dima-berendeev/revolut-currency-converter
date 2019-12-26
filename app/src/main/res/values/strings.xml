@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">RevoluteTestApp</string>
+    <string name="app_name">Currency converter</string>
+    <string name="toolbar_rates">Rates</string>
+    <string name="converter_item_currency">currency</string>
+    <string name="rates_snack_bar_offline_mode">Offline mode</string>
+    <string name="rates_snack_bar_action_hide">hide</string>
 </resources>

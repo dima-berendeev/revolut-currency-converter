@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="H1">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Subtle">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+</resources>
