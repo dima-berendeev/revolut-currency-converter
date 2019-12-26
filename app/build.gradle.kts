@@ -73,6 +73,7 @@ dependencies {
     implementation(LibraryVersions.gson)
     implementation(LibraryVersions.gsonConverter)
     implementation(LibraryVersions.rxConverter)
+    implementation("com.squareup.picasso:picasso:2.71828")
 
     //-------------------persistence-------------------
     implementation(LibraryVersions.room)
