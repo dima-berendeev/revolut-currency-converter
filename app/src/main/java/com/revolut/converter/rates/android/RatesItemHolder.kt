@@ -36,10 +36,11 @@ class RatesItemHolder(
                 callback.onAmountChanged(currency!!, amountField.text.toString())
             }
         }
-
         itemView.setOnClickListener {
             callback.onItemClicked(currency!!)
         }
+        itemView.isFocusableInTouchMode = false
+        itemView.isFocusable = false
 
         amountField.setTextIsSelectable(false)
     }
