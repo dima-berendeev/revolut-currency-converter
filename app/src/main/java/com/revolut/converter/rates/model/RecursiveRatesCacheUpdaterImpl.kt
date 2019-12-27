@@ -30,7 +30,7 @@ class RecursiveRatesCacheUpdaterImpl @Inject constructor(
             if (updatePossible) {
                 ratesDataSet.getCacheSize()
                     .flatMapCompletable { cacheSize ->
-                        val delayMs = if (cacheSize < 1) 0L else 2500L
+                        val delayMs = if (cacheSize < 1) 100L else 2500L
                         getUpdateAllCurrenciesInDbCompletable(delayMs)
                     }
             } else {

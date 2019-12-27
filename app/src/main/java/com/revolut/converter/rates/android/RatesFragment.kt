@@ -48,6 +48,7 @@ class RatesFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
+        recyclerView.setItemViewCacheSize(20)
         viewModel.liveData.observe(
             viewLifecycleOwner,
             Observer { viewState -> updateUi(viewState) })
@@ -80,7 +81,9 @@ class RatesFragment : Fragment() {
             adapter.update(newItems)
             recyclerView.layoutManager!!.onRestoreInstanceState(ss)
             lastItems = newItems
-
+            progressBar.visibility = View.GONE
+        } else {
+            progressBar.visibility = View.VISIBLE
         }
     }
 

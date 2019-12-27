@@ -5,11 +5,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.revolut.converter.rates.type.CurrencyCode
 import com.revolut.converter.rates.viewmodel.RatesViewState
+import com.revolut.converter.util.logDebug
 
 class RatesAdapter(private val callback: Callback) : RecyclerView.Adapter<RatesItemHolder>() {
     private var items: List<RatesViewState.Item> = emptyList()
 
     fun update(newItems: List<RatesViewState.Item>) {
+        logDebug("RATES_ADAPTER", "Update items")
         val oldItems = items
         items = newItems
         DiffUtil.calculateDiff(DiffCallback(oldItems, newItems))

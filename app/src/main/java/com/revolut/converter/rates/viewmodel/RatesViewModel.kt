@@ -6,6 +6,7 @@ import com.revolut.converter.core.model.SchedulerProvider
 import com.revolut.converter.rates.model.*
 import com.revolut.converter.rates.type.CurrencyCode
 import io.reactivex.disposables.CompositeDisposable
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -39,9 +40,9 @@ class RatesViewModel @Inject constructor(
         val disposable = ratesModel.observe()
             .map { modelResult -> mapUiState(modelResult) }
             .subscribeOn(schedulers.io)
-            .observeOn(schedulers.ui)
+            .throttleLast(200, TimeUnit.MILLISECONDS)
             .subscribe { uiState ->
-                liveData.value = uiState
+                liveData.postValue(uiState)
             }
         disposables.add(disposable)
     }
