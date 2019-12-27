@@ -8,8 +8,8 @@ import com.revolut.converter.R
 import com.revolut.converter.rates.type.CurrencyCode
 import com.revolut.converter.rates.viewmodel.RatesViewState
 import com.revolut.converter.util.hideSoftKeyboard
+import com.revolut.converter.util.load
 import com.revolut.converter.util.onTextChanged
-import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.converter_item.*
 import java.text.DecimalFormatSymbols
@@ -74,10 +74,7 @@ class RatesItemHolder(
         }
 
         isBindPerforming = false
-
-        Picasso.get()
-            .load("https://raw.githubusercontent.com/dima-berendeev/revolut-currency-converter/master/currency-flags/${item.currencyCode.asString}.png")
-            .into(currencyImage);
+        currencyImage.load(item.currencyIconUrl)
     }
 
     interface Callback {

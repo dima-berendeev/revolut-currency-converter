@@ -8,6 +8,7 @@ data class RatesViewState(
     data class Item(
         val currencyCode: CurrencyCode,
         val currencyName: String,
+        val currencyIconUrl:String,
         val amount: String
     )
 }

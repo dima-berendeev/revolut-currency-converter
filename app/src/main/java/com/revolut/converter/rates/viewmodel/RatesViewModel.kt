@@ -55,8 +55,14 @@ class RatesViewModel @Inject constructor(
         return RatesViewState.Item(
             currencyCode = currencyInfo.code,
             currencyName = "",
-            amount = currencyInfo.amount.toString()
+            amount = currencyInfo.amount.toString(),
+            currencyIconUrl = getCurrencyIconUrl(currencyInfo.code)
         )
+    }
+
+    private fun getCurrencyIconUrl(currency: CurrencyCode): String {
+        return "https://raw.githubusercontent.com/dima-berendeev/" +
+                "revolut-currency-converter/master/currency-flags/${currency.asString}.png"
     }
 
     fun onAmountChanged(currency: CurrencyCode, value: String) {

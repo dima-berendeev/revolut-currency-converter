@@ -28,6 +28,7 @@ object DepVers {
     const val findBugs = "jsr305:3.0.2"
     const val stetho = "1.5.1"
     const val junit = "4.12"
+    const val glide = "4.10.0"
 
 }
 
@@ -65,6 +66,8 @@ object LibraryVersions {
     const val gson = "com.google.code.gson:gson:${DepVers.gson}"
     const val gsonConverter = "com.squareup.retrofit2:converter-gson:${DepVers.retrofit}"
     const val rxConverter = "com.squareup.retrofit2:adapter-rxjava2:${DepVers.retrofit}"
+    const val glide = "com.github.bumptech.glide:glide:${DepVers.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${DepVers.glide}"
 
     const val dagger = "com.google.dagger:dagger:${DepVers.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${DepVers.dagger}"
