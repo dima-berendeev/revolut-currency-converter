@@ -54,7 +54,7 @@ class RatesViewModel @Inject constructor(
     private fun mapItem(currencyInfo: CurrencyInfo): RatesViewState.Item {
         return RatesViewState.Item(
             currencyCode = currencyInfo.code,
-            currencyName = "",
+            currencyName = CurrencyDetails.currencyNames[currencyInfo.code] ?: "Unknown",
             amount = currencyInfo.amount.toString(),
             currencyIconUrl = getCurrencyIconUrl(currencyInfo.code)
         )
