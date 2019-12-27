@@ -3,7 +3,7 @@ package com.revolut.converter.rates.di
 import com.revolut.converter.core.di.CoreDependencies
 import com.revolut.converter.rates.data.*
 import com.revolut.converter.rates.model.*
-import com.revolut.converter.rates.presentation.RatesViewModel
+import com.revolut.converter.rates.viewmodel.RatesViewModel
 import dagger.Binds
 import dagger.Component
 import dagger.Module

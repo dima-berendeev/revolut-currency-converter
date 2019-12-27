@@ -3,8 +3,8 @@ package com.revolut.converter.rates.android
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.revolut.converter.rates.presentation.RatesViewState
 import com.revolut.converter.rates.type.CurrencyCode
+import com.revolut.converter.rates.viewmodel.RatesViewState
 
 class RatesAdapter(private val callback: Callback) : RecyclerView.Adapter<RatesItemHolder>() {
     private var items: List<RatesViewState.Item> = emptyList()

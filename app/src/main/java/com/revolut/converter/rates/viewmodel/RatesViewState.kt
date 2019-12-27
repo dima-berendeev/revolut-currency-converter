@@ -1,4 +1,4 @@
-package com.revolut.converter.rates.presentation
+package com.revolut.converter.rates.viewmodel
 
 import com.revolut.converter.rates.type.CurrencyCode
 

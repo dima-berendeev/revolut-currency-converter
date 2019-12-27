@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.revolut.converter.R
-import com.revolut.converter.rates.presentation.RatesViewModel
-import com.revolut.converter.rates.presentation.RatesViewState
 import com.revolut.converter.rates.type.CurrencyCode
+import com.revolut.converter.rates.viewmodel.RatesViewModel
+import com.revolut.converter.rates.viewmodel.RatesViewState
 import com.revolut.converter.util.arg
 import kotlinx.android.synthetic.main.converter_fragment.*
 

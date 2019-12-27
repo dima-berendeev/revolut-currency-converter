@@ -1,4 +1,4 @@
-package com.revolut.converter.rates.presentation
+package com.revolut.converter.rates.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

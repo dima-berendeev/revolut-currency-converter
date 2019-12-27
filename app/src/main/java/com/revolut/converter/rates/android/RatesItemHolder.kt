@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.revolut.converter.R
-import com.revolut.converter.rates.presentation.RatesViewState
 import com.revolut.converter.rates.type.CurrencyCode
+import com.revolut.converter.rates.viewmodel.RatesViewState
 import com.revolut.converter.util.hideSoftKeyboard
 import com.revolut.converter.util.onTextChanged
 import com.squareup.picasso.Picasso
