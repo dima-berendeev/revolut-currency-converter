@@ -10,12 +10,12 @@ extensions.getByType(org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExten
 }
 
 android {
-    compileSdkVersion(DependencyVersions.compileSdk)
-    buildToolsVersion(DependencyVersions.buildTools)
+    compileSdkVersion(DepVers.compileSdk)
+    buildToolsVersion(DepVers.buildTools)
 
     defaultConfig {
-        minSdkVersion(DependencyVersions.minSdk)
-        targetSdkVersion(DependencyVersions.targetSdk)
+        minSdkVersion(DepVers.minSdk)
+        targetSdkVersion(DepVers.targetSdk)
         versionCode = Versions.versionCode
         versionName = Versions.versionName
     }
@@ -64,13 +64,13 @@ dependencies {
     implementation(LibraryVersions.androidKtx)
     implementation(LibraryVersions.constraintLayout)
     implementation(LibraryVersions.lifecycle)
-    implementation("com.google.android.material:material:1.0.0")
-
+    implementation(LibraryVersions.material)
 
     //-------------------network---------------
     implementation(LibraryVersions.okHttpLogging)
     implementation(LibraryVersions.okHttp)
     implementation(LibraryVersions.gson)
+    implementation(LibraryVersions.retrofit)
     implementation(LibraryVersions.gsonConverter)
     implementation(LibraryVersions.rxConverter)
     implementation("com.squareup.picasso:picasso:2.71828")
@@ -86,6 +86,6 @@ dependencies {
     kapt(LibraryVersions.daggerCompiler)
 
     //-------------------develop-utils-------------------
-    implementation("com.facebook.stetho:stetho:1.5.1")
-    testImplementation("junit:junit:4.12")
+    implementation(LibraryVersions.stetho)
+    testImplementation(LibraryVersions.junit)
 }

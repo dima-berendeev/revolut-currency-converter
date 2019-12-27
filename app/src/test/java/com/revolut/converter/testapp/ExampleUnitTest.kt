@@ -33,7 +33,7 @@ class ExampleUnitTest {
             }
         }
 
-        val order = object : CurrenciesOrderDataSet {
+        val order = object : CurrenciesLocalOrderDataSet {
             override fun save(currencyList: List<CurrencyCode>) {
             }
 

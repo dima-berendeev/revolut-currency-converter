@@ -1,4 +1,4 @@
-object DependencyVersions {
+object DepVers {
     const val buildTools = "29.0.2"
     const val compileSdk = 29
     const val minSdk = 21
@@ -11,6 +11,7 @@ object DependencyVersions {
     const val androidx = "1.0.0"
     const val appCompat = "1.0.2"
     const val lifecycle = "2.1.0"
+    const val material = "1.0.0"
     const val androidKtx = "1.0.1"
     const val recyclerView = "28.0.0'"
     const val constraintLayout = "1.1.3"
@@ -25,46 +26,51 @@ object DependencyVersions {
     const val retrofit = "2.6.2"
     const val gson = "2.8.6"
     const val findBugs = "jsr305:3.0.2"
+    const val stetho = "1.5.1"
+    const val junit = "4.12"
 
 }
 
 object GradlePluginVersions {
-    const val android = "com.android.tools.build:gradle:${DependencyVersions.gradle}"
-    const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${DependencyVersions.kotlin}"
+    const val android = "com.android.tools.build:gradle:${DepVers.gradle}"
+    const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${DepVers.kotlin}"
 }
 
 object LibraryVersions {
-    const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${DependencyVersions.kotlin}"
-    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${DependencyVersions.kotlin}"
+    const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${DepVers.kotlin}"
 
-    const val rxJava = "io.reactivex.rxjava2:rxjava:${DependencyVersions.rxJava}"
-    const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${DependencyVersions.rxAndroid}"
-    const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${DependencyVersions.rxKotlin}"
+    const val rxJava = "io.reactivex.rxjava2:rxjava:${DepVers.rxJava}"
+    const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${DepVers.rxAndroid}"
+    const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${DepVers.rxKotlin}"
 
-    const val appCompat = "androidx.appcompat:appcompat:${DependencyVersions.appCompat}"
-    const val recyclerView =
-        "com.android.support:recyclerview-v7:${DependencyVersions.recyclerView}"
+    const val appCompat = "androidx.appcompat:appcompat:${DepVers.appCompat}"
+    const val recyclerView = "com.android.support:recyclerview-v7:${DepVers.recyclerView}"
 
-    const val lifecycle =
-        "androidx.lifecycle:lifecycle-extensions:${DependencyVersions.lifecycle}"
+    const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${DepVers.lifecycle}"
+
+    const val material = "com.google.android.material:material:${DepVers.material}"
+
     const val constraintLayout =
-        "androidx.constraintlayout:constraintlayout:${DependencyVersions.constraintLayout}"
-    const val androidKtx = "androidx.core:core-ktx:${DependencyVersions.androidKtx}"
+        "androidx.constraintlayout:constraintlayout:${DepVers.constraintLayout}"
 
-    const val room = "androidx.room:room-runtime:${DependencyVersions.room}"
-    const val roomCompiler = "androidx.room:room-compiler:${DependencyVersions.room}"
-    const val roomRx = "androidx.room:room-rxjava2:${DependencyVersions.room}"
+    const val androidKtx = "androidx.core:core-ktx:${DepVers.androidKtx}"
 
-    const val okHttp = "com.squareup.okhttp3:okhttp:${DependencyVersions.okHttp}"
-    const val okHttpLogging =
-        "com.squareup.okhttp3:logging-interceptor:${DependencyVersions.okHttp}"
-    const val retrofit = "com.squareup.retrofit2:retrofit:${DependencyVersions.retrofit}"
-    const val gson = "com.google.code.gson:gson:${DependencyVersions.gson}"
-    const val gsonConverter = "com.squareup.retrofit2:converter-gson:${DependencyVersions.retrofit}"
-    const val rxConverter = "com.squareup.retrofit2:adapter-rxjava2:${DependencyVersions.retrofit}"
+    const val room = "androidx.room:room-runtime:${DepVers.room}"
+    const val roomCompiler = "androidx.room:room-compiler:${DepVers.room}"
+    const val roomRx = "androidx.room:room-rxjava2:${DepVers.room}"
 
-    const val dagger = "com.google.dagger:dagger:${DependencyVersions.dagger}"
-    const val daggerCompiler = "com.google.dagger:dagger-compiler:${DependencyVersions.dagger}"
-    const val findBugs = "com.google.code.findbugs:${DependencyVersions.findBugs}"
+    const val okHttp = "com.squareup.okhttp3:okhttp:${DepVers.okHttp}"
+    const val okHttpLogging = "com.squareup.okhttp3:logging-interceptor:${DepVers.okHttp}"
+    const val retrofit = "com.squareup.retrofit2:retrofit:${DepVers.retrofit}"
+    const val gson = "com.google.code.gson:gson:${DepVers.gson}"
+    const val gsonConverter = "com.squareup.retrofit2:converter-gson:${DepVers.retrofit}"
+    const val rxConverter = "com.squareup.retrofit2:adapter-rxjava2:${DepVers.retrofit}"
+
+    const val dagger = "com.google.dagger:dagger:${DepVers.dagger}"
+    const val daggerCompiler = "com.google.dagger:dagger-compiler:${DepVers.dagger}"
+    const val findBugs = "com.google.code.findbugs:${DepVers.findBugs}"
+
+    const val stetho = "com.facebook.stetho:stetho:${DepVers.stetho}"
+    const val junit = "junit:junit:${DepVers.junit}"
 
 }

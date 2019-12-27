@@ -37,7 +37,7 @@ abstract class RatesModule {
     abstract fun bindRatesDataSet(impl: RatesDataSetImpl): RatesDataSet
 
     @Binds
-    abstract fun bindCurrenciesOrderDataSet(impl: CurrenciesOrderDataSetImpl): CurrenciesOrderDataSet
+    abstract fun bindCurrenciesLocalOrderDataSet(impl: CurrenciesLocalOrderDataSetImpl): CurrenciesLocalOrderDataSet
 
     @Binds
     abstract fun bindRecursiveRatesCacheUpdater(impl: RecursiveRatesCacheUpdaterImpl): RecursiveRatesCacheUpdater
