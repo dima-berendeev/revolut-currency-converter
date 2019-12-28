@@ -24,11 +24,11 @@ class RatesViewModel @Inject constructor(
     private val disposables = CompositeDisposable()
 
     init {
-        startUiSubscription()
-        startUpdaterSubscription()
+        launchUiSubscription()
+        launchOflineRatesUpdaterSubscription()
     }
 
-    private fun startUpdaterSubscription() {
+    private fun launchOflineRatesUpdaterSubscription() {
         disposables.add(
             recursiveRatesCacheUpdater.getCompletable()
                 .subscribeOn(schedulers.io)
@@ -36,7 +36,7 @@ class RatesViewModel @Inject constructor(
         )
     }
 
-    private fun startUiSubscription() {
+    private fun launchUiSubscription() {
         val disposable = ratesModel.observe()
             .map { modelResult -> mapUiState(modelResult) }
             .subscribeOn(schedulers.io)
