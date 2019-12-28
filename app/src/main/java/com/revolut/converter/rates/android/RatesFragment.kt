@@ -46,9 +46,8 @@ class RatesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initSnackbar()
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
-        recyclerView.setItemViewCacheSize(20)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
         viewModel.liveData.observe(
             viewLifecycleOwner,
             Observer { viewState -> updateUi(viewState) })
@@ -78,7 +77,7 @@ class RatesFragment : Fragment() {
         if (newItems != null) {
             //workaround prevent shift items on moving currency item upward
             val ss = recyclerView.layoutManager!!.onSaveInstanceState()
-            adapter.update(newItems)
+            adapter.submitList(newItems)
             recyclerView.layoutManager!!.onRestoreInstanceState(ss)
             lastItems = newItems
             progressBar.visibility = View.GONE

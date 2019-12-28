@@ -42,9 +42,13 @@ class RatesViewModel @Inject constructor(
             .subscribeOn(schedulers.io)
             .throttleLast(200, TimeUnit.MILLISECONDS)
             .subscribe { uiState ->
-                liveData.postValue(uiState)
+                updateUi(uiState)
             }
         disposables.add(disposable)
+    }
+
+    private fun updateUi(uiState: RatesViewState) {
+        liveData.postValue(uiState)
     }
 
     private fun mapUiState(modelResult: RatesModel.Result): RatesViewState {
