@@ -49,7 +49,7 @@
         android:fontFamily="sans-serif"
         android:inputType="numberDecimal"
         android:maxWidth="186dp"
-        android:minWidth="93dp"
+        android:minWidth="56dp"
         android:textAlignment="textEnd"
         android:textColor="@color/primaryBlack"
         app:layout_constraintBottom_toBottomOf="parent"

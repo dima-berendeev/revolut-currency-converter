@@ -16,6 +16,9 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.converter_item.*
 import java.text.DecimalFormatSymbols
 
+private const val MAX_DIGITS_BEFORE_POINT = 8
+private const val MAX_DIGITS_AFTER_POINT = 2
+
 class RatesItemHolder(
     parent: ViewGroup,
     private val callback: Callback
@@ -95,7 +98,7 @@ class RatesItemHolder(
                 }
 
                 // not allow add excess digit
-                TextUtils.isDigitsOnly(after) && after.length > before.length && after.length > 6 -> {
+                TextUtils.isDigitsOnly(after) && after.length > before.length && after.length > MAX_DIGITS_BEFORE_POINT -> {
                     amountField.setText(before)
                 }
 
@@ -104,7 +107,7 @@ class RatesItemHolder(
             //leave only 2 digits after point
             val parts = (after.split(decSeparator))
             if (parts.size == 2) {
-                if (parts[1].length > 2) {
+                if (parts[1].length > MAX_DIGITS_AFTER_POINT) {
                     amountField.setText(before)
                 }
             }
