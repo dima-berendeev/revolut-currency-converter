@@ -18,7 +18,7 @@ class CurrenciesLocalOrderDataSetImpl @Inject constructor(private val context: C
         PreferenceManager.getDefaultSharedPreferences(context)
     }
 
-    private var currenciesOrder by preferenceProperty(preferences, "currencies_order") { "" }
+    private var currenciesOrder by preferenceProperty(preferences, "currencies_order") { "EUR,USD" }
 
     private val subject by lazy { BehaviorSubject.createDefault(deserializeOrder(currenciesOrder)) }
 

@@ -30,6 +30,7 @@ class RatesItemHolder(
     private var isBindPerforming = false
     private var isSelfChanging = false
     private var currency: CurrencyCode? = null
+    private var initializedAfterAttach = false
 
     init {
         amountField.addTextChangedListener(AmountTextWatcher())
@@ -44,6 +45,7 @@ class RatesItemHolder(
 
 
     fun onDetach() {
+        initializedAfterAttach = false
         if (amountField.isFocused) {
             amountField.hideSoftKeyboard()
             callback.onLostFocus()
@@ -56,12 +58,13 @@ class RatesItemHolder(
         currencyCodeView.text = item.currencyCode.asString
         currencyCountryView.text = item.currencyName
 
-        if (amountField.text.isEmpty() || !item.isBaseCurrency) {
+        if (!item.isBaseCurrency || !initializedAfterAttach) {
             amountField.setText(item.amount)
         }
 
         isBindPerforming = false
         currencyImage.load(item.currencyIconUrl)
+        initializedAfterAttach = true
     }
 
     inner class AmountTextWatcher : TextWatcher {
