@@ -15,15 +15,19 @@ class RatesModel @Inject constructor(
 ) {
     fun observe(): Observable<Result> {
 
+        val debouncedBaseCurrency = baseCurrencyDataSet.observe()
+            .publish()
+            .autoConnect(2)
+
         val groupedByCurrencyAmount: Observable<Observable<BigDecimal>> =
-            baseCurrencyDataSet.observe()
+            debouncedBaseCurrency
                 .groupBy { currencyInfo -> currencyInfo.code }
                 .map { groupedObservable -> groupedObservable.map { currencyInfo -> currencyInfo.amount } }
 
         val groupedByCurrencyRates: Observable<GroupedObservable<CurrencyCode, RatesInfo>> =
-            baseCurrencyDataSet.observe()
-                .distinctUntilChanged()
+            debouncedBaseCurrency
                 .map { currencyInfo -> currencyInfo.code }
+                .distinctUntilChanged()
                 .switchMap { currencyCode: CurrencyCode ->
                     ratesRepository.observeRates(currencyCode)
                         .doOnDispose { println("dispose") }
