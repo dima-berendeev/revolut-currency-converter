@@ -1,5 +1,7 @@
 package com.revolut.converter.rates.android
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +11,6 @@ import com.revolut.converter.rates.type.CurrencyCode
 import com.revolut.converter.rates.viewmodel.RatesViewState
 import com.revolut.converter.util.hideSoftKeyboard
 import com.revolut.converter.util.load
-import com.revolut.converter.util.onTextChanged
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.converter_item.*
 import java.text.DecimalFormatSymbols
@@ -30,12 +31,7 @@ class RatesItemHolder(
     private var currency: CurrencyCode? = null
 
     init {
-        amountField.onTextChanged {
-            if (!isBindPerforming && !isSelfChanging) {
-                ensureTextInvariant()
-                callback.onAmountChanged(currency!!, amountField.text.toString())
-            }
-        }
+        amountField.addTextChangedListener(AmountTextWatcher())
         itemView.setOnClickListener {
             callback.onItemClicked(currency!!)
         }
@@ -45,16 +41,6 @@ class RatesItemHolder(
         amountField.setTextIsSelectable(false)
     }
 
-    private fun ensureTextInvariant() {
-        val text = amountField.text.toString()
-        when (text) {
-            decSeparator.toString() -> amountField.setText("0")
-            "" -> amountField.setText("0")
-        }
-        if (text.length == 2 && text[0] == '0' && text[1] != decSeparator) {
-            amountField.setText(text[1].toString())
-        }
-    }
 
     fun onDetach() {
         if (amountField.isFocused) {
@@ -69,12 +55,33 @@ class RatesItemHolder(
         currencyCodeView.text = item.currencyCode.asString
         currencyCountryView.text = item.currencyName
 
-        if (amountField.text.toString().toBigDecimalOrNull() != item.amount.toBigDecimalOrNull()) {
+        if (amountField.text.isEmpty() || !item.isBaseCurrency) {
             amountField.setText(item.amount)
         }
 
         isBindPerforming = false
         currencyImage.load(item.currencyIconUrl)
+    }
+
+    inner class AmountTextWatcher : TextWatcher {
+        lateinit var beforeChangeText: String
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            if (isSelfChanging || isBindPerforming) return
+            beforeChangeText = amountField.text.toString()
+        }
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            if (isSelfChanging || isBindPerforming) return
+            isSelfChanging = true
+            isSelfChanging = false
+            callback.onAmountChanged(currency!!, amountField.text.toString())
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+
+
+        }
     }
 
     interface Callback {

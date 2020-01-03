@@ -77,7 +77,7 @@ class RatesFragment : Fragment() {
         if (newItems != null) {
             //workaround prevent shift items on moving currency item upward
             val ss = recyclerView.layoutManager!!.onSaveInstanceState()
-            adapter.submitList(newItems)
+            adapter.update(newItems)
             recyclerView.layoutManager!!.onRestoreInstanceState(ss)
             lastItems = newItems
             progressBar.visibility = View.GONE

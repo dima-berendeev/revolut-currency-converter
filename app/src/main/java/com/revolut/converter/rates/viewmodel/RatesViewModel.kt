@@ -52,16 +52,22 @@ class RatesViewModel @Inject constructor(
     }
 
     private fun mapUiState(modelResult: RatesModel.Result): RatesViewState {
-        val items = modelResult.values?.map { currencyInfo -> mapItem(currencyInfo) }
+        val items = modelResult.values?.map { currencyInfo ->
+            mapItem(
+                currencyInfo,
+                currencyInfo.code == modelResult.baseCurrency
+            )
+        }
         return RatesViewState(items, modelResult.isOfflineMode)
     }
 
-    private fun mapItem(currencyInfo: CurrencyInfo): RatesViewState.Item {
+    private fun mapItem(currencyInfo: CurrencyInfo, isBaseCurrency: Boolean): RatesViewState.Item {
         return RatesViewState.Item(
             currencyCode = currencyInfo.code,
             currencyName = CurrencyDetails.currencyNames[currencyInfo.code] ?: "Unknown",
             amount = currencyInfo.amount.toString(),
-            currencyIconUrl = getCurrencyIconUrl(currencyInfo.code)
+            currencyIconUrl = getCurrencyIconUrl(currencyInfo.code),
+            isBaseCurrency = isBaseCurrency
         )
     }
 

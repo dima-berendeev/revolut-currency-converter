@@ -2,24 +2,36 @@ package com.revolut.converter.rates.android
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.revolut.converter.rates.type.CurrencyCode
 import com.revolut.converter.rates.viewmodel.RatesViewState
+import com.revolut.converter.util.logDebug
 
-class RatesAdapter(private val callback: Callback) :
-    ListAdapter<RatesViewState.Item, RatesItemHolder>(DiffCallback()) {
-    private val itemCallback = ItemCallback()
+class RatesAdapter(private val callback: Callback) : RecyclerView.Adapter<RatesItemHolder>() {
+    private var items: List<RatesViewState.Item> = emptyList()
+
+    fun update(newItems: List<RatesViewState.Item>) {
+        logDebug("RATES_ADAPTER", "Update items")
+        val oldItems = items
+        items = newItems
+        DiffUtil.calculateDiff(DiffCallback(oldItems, newItems))
+            .dispatchUpdatesTo(this)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RatesItemHolder {
-        return RatesItemHolder(parent, itemCallback)
+        return RatesItemHolder(parent, ItemCallback())
     }
 
     override fun onViewDetachedFromWindow(holder: RatesItemHolder) {
         holder.onDetach()
     }
 
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
     override fun onBindViewHolder(holder: RatesItemHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(items[position])
     }
 
     override fun onBindViewHolder(
@@ -27,7 +39,7 @@ class RatesAdapter(private val callback: Callback) :
         position: Int,
         payloads: MutableList<Any>
     ) {
-        holder.bind(getItem(position))
+        holder.bind(items[position])
     }
 
     interface Callback {
@@ -50,28 +62,29 @@ class RatesAdapter(private val callback: Callback) :
         }
     }
 
-    class DiffCallback() : DiffUtil.ItemCallback<RatesViewState.Item>() {
+    private class DiffCallback(
+        private val oldItems: List<RatesViewState.Item>,
+        private val newItems: List<RatesViewState.Item>
+    ) : DiffUtil.Callback() {
 
-
-        override fun areItemsTheSame(
-            oldItem: RatesViewState.Item,
-            newItem: RatesViewState.Item
-        ): Boolean {
-            return oldItem.currencyCode == newItem.currencyCode
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldItems[oldItemPosition].currencyCode == newItems[newItemPosition].currencyCode
         }
 
-        override fun areContentsTheSame(
-            oldItem: RatesViewState.Item,
-            newItem: RatesViewState.Item
-        ): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun getChangePayload(
-            oldItem: RatesViewState.Item,
-            newItem: RatesViewState.Item
-        ): Any? {
+        override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
             return Unit
+        }
+
+        override fun getOldListSize(): Int {
+            return oldItems.size
+        }
+
+        override fun getNewListSize(): Int {
+            return newItems.size
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldItems[oldItemPosition] == newItems[newItemPosition]
         }
     }
 }

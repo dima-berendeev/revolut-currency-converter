@@ -72,7 +72,11 @@ class ExampleUnitTest {
             )
         )
 
-        val expectedResult = RatesModel.Result(values = values, isOfflineMode = false)
+        val expectedResult = RatesModel.Result(
+            values = values,
+            isOfflineMode = false,
+            baseCurrency = CurrencyCode("EUR")
+        )
 
         val testScheduler = TestScheduler()
 

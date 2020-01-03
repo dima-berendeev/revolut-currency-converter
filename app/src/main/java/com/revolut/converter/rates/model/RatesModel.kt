@@ -72,8 +72,8 @@ class RatesModel @Inject constructor(
     ): Result {
         val localCurrencyOrderMap: Map<CurrencyCode, Int> =
             userCurrencyOrder.mapIndexed { index, code ->
-            code to index
-        }.toMap()
+                code to index
+            }.toMap()
 
         //unsorted currency items
         val values: List<CurrencyInfo> = rates.mapValues { rateEntry ->
@@ -92,10 +92,18 @@ class RatesModel @Inject constructor(
         }.thenBy { currencyInfo -> currencyInfo.code.asString }
         val sortedValues = values.sortedWith(comparator)
 
-        return Result(values = sortedValues, isOfflineMode = isOfflineResult)
+        return Result(
+            values = sortedValues,
+            isOfflineMode = isOfflineResult,
+            baseCurrency = baseCurrency
+        )
     }
 
-    data class Result(val values: List<CurrencyInfo>?, val isOfflineMode: Boolean)
+    data class Result(
+        val baseCurrency: CurrencyCode,
+        val values: List<CurrencyInfo>?,
+        val isOfflineMode: Boolean
+    )
 
     data class BaseAmountAndRates(val baseAmount: BigDecimal, val ratesInfo: RatesInfo)
     data class RatesInfo(
