@@ -1,6 +1,7 @@
 package com.revolut.converter.rates.android
 
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -74,7 +75,37 @@ class RatesItemHolder(
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
             if (isSelfChanging || isBindPerforming) return
             isSelfChanging = true
+            processChange(beforeChangeText, s)
             isSelfChanging = false
+        }
+
+        private fun processChange(before: String, after: CharSequence) {
+            when {
+                // replace empty with 0
+                after.isEmpty() -> {
+                    amountField.setText("0")
+                }
+
+                // replace 01 with 0
+                before == "0" && after.matches("^0[0-9]$".toRegex()) -> {
+                    amountField.setText("${after[1]}")
+                }
+
+                // not allow add excess digit
+                TextUtils.isDigitsOnly(after) && after.length > before.length && after.length > 6 -> {
+                    amountField.setText(before)
+                }
+
+            }
+
+            //leave only 2 digits after point
+            val parts = (after.split(decSeparator))
+            if (parts.size == 2) {
+                if (parts[1].length > 2) {
+                    amountField.setText(before)
+                }
+            }
+
             callback.onAmountChanged(currency!!, amountField.text.toString())
         }
 
