@@ -2,7 +2,7 @@ package com.revolut.converter.rates.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.revolut.converter.core.model.SchedulerProvider
+import com.revolut.converter.core.common.SchedulerProvider
 import com.revolut.converter.rates.model.*
 import com.revolut.converter.rates.type.CurrencyCode
 import io.reactivex.disposables.CompositeDisposable

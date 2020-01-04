@@ -14,7 +14,7 @@ import com.revolut.converter.rates.type.CurrencyCode
 import com.revolut.converter.rates.viewmodel.RatesViewModel
 import com.revolut.converter.rates.viewmodel.RatesViewState
 import com.revolut.converter.util.arg
-import kotlinx.android.synthetic.main.converter_fragment.*
+import kotlinx.android.synthetic.main.rates_fragment.*
 
 class RatesFragment : Fragment() {
 
@@ -40,7 +40,7 @@ class RatesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.converter_fragment, container, false)
+        return inflater.inflate(R.layout.rates_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

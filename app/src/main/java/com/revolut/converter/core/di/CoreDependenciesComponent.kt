@@ -5,9 +5,9 @@ import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.revolut.converter.BuildConfig
+import com.revolut.converter.core.common.SchedulerProvider
+import com.revolut.converter.core.common.SchedulerProviderImpl
 import com.revolut.converter.core.data.*
-import com.revolut.converter.core.model.SchedulerProvider
-import com.revolut.converter.core.model.SchedulerProviderImpl
 import com.revolut.converter.util.logDebug
 import dagger.*
 import okhttp3.Cache

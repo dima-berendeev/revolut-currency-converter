@@ -13,7 +13,7 @@ import com.revolut.converter.rates.viewmodel.RatesViewState
 import com.revolut.converter.util.hideSoftKeyboard
 import com.revolut.converter.util.load
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.converter_item.*
+import kotlinx.android.synthetic.main.rates_item.*
 
 private const val MAX_DIGITS_BEFORE_POINT = 8
 private const val MAX_DIGITS_AFTER_POINT = 2
@@ -129,5 +129,5 @@ class RatesItemHolder(
 }
 
 private fun createView(parent: ViewGroup): View {
-    return LayoutInflater.from(parent.context).inflate(R.layout.converter_item, parent, false)
+    return LayoutInflater.from(parent.context).inflate(R.layout.rates_item, parent, false)
 }

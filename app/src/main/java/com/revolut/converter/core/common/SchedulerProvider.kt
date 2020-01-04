@@ -1,4 +1,4 @@
-package com.revolut.converter.core.model
+package com.revolut.converter.core.common
 
 import io.reactivex.Scheduler
 

@@ -2,7 +2,7 @@ package com.revolut.converter.rates.data
 
 import android.content.Context
 import android.preference.PreferenceManager
-import com.revolut.converter.core.model.SchedulerProvider
+import com.revolut.converter.core.common.SchedulerProvider
 import com.revolut.converter.rates.model.BaseCurrencyDataSet
 import com.revolut.converter.rates.model.CurrencyInfo
 import com.revolut.converter.rates.type.CurrencyCode

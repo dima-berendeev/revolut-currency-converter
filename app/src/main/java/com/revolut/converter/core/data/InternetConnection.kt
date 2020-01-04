@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import com.revolut.converter.core.model.SchedulerProvider
+import com.revolut.converter.core.common.SchedulerProvider
 import com.revolut.converter.util.ConnectivityUtils
 import com.revolut.converter.util.logDebug
 import com.revolut.converter.util.requiredAllBranches
