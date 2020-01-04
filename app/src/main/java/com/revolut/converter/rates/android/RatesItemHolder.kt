@@ -14,7 +14,6 @@ import com.revolut.converter.util.hideSoftKeyboard
 import com.revolut.converter.util.load
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.converter_item.*
-import java.text.DecimalFormatSymbols
 
 private const val MAX_DIGITS_BEFORE_POINT = 8
 private const val MAX_DIGITS_AFTER_POINT = 2
@@ -24,8 +23,6 @@ class RatesItemHolder(
     private val callback: Callback
 ) : RecyclerView.ViewHolder(createView(parent)),
     LayoutContainer {
-
-    private val decSeparator = DecimalFormatSymbols().decimalSeparator
 
     override val containerView: View
         get() = itemView
@@ -71,6 +68,9 @@ class RatesItemHolder(
     }
 
     inner class AmountTextWatcher : TextWatcher {
+        private val decimalSeparator = Regex("[,.]")
+        private val redundantNullPattern = "^0[0-9]$".toRegex()
+
         lateinit var beforeChangeText: String
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -93,7 +93,7 @@ class RatesItemHolder(
                 }
 
                 // replace 01 with 0
-                before == "0" && after.matches("^0[0-9]$".toRegex()) -> {
+                before == "0" && after.matches(redundantNullPattern) -> {
                     amountField.setText("${after[1]}")
                 }
 
@@ -105,7 +105,7 @@ class RatesItemHolder(
             }
 
             //leave only 2 digits after point
-            val parts = (after.split(decSeparator))
+            val parts = (after.split(decimalSeparator))
             if (parts.size == 2) {
                 if (parts[1].length > MAX_DIGITS_AFTER_POINT) {
                     amountField.setText(before)
