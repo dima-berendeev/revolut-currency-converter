@@ -51,7 +51,6 @@
         android:fontFamily="sans-serif"
         android:inputType="numberDecimal"
         android:lines="1"
-        android:maxWidth="148sp"
         android:minWidth="56sp"
         android:textAlignment="textEnd"
         android:textColor="@color/primaryBlack" />
